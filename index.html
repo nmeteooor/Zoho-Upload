@@ -456,7 +456,7 @@
       const month = String(now.getMonth() + 1).padStart(2, "0");
       const day = String(now.getDate()).padStart(2, "0");
       const year = now.getFullYear();
-      const lead_assigning_date = month + "/" + day + "/" + year;
+      const lead_assigning_date = year + "-" + month + "-" + day;
 
       const payload = {
         recruiter: recruiter.value,
