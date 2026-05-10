@@ -436,20 +436,21 @@
 
       for (let i = 1; i < lines.length; i++) {
         if (!lines[i].trim()) continue;
+// Handle quoted fields
+const values = [];
+let current = '';
+let inQuotes = false;
+for (let ch of lines[i]) {
+  if (ch === '"') { inQuotes = !inQuotes; }
+  else if (ch === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+  else { current += ch; }
+}
+values.push(current.trim());
+
 const allEmpty = values.every(v => !v.trim());
 if (allEmpty) continue;
-        // Handle quoted fields
-        const values = [];
-        let current = '';
-        let inQuotes = false;
-        for (let ch of lines[i]) {
-          if (ch === '"') { inQuotes = !inQuotes; }
-          else if (ch === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
-          else { current += ch; }
-        }
-        values.push(current.trim());
 
-        const candidate = {};
+const candidate = {};
         headers.forEach((h, idx) => { candidate[h] = values[idx] || ''; });
         candidates.push(candidate);
       }
