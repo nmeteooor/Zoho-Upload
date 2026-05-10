@@ -447,8 +447,10 @@ for (let ch of lines[i]) {
 }
 values.push(current.trim());
 
-const allEmpty = values.every(v => !v.trim());
-if (allEmpty) continue;
+const firstName = values[0] || '';
+const lastName = values[1] || '';
+const jobTitle = values[4] || '';
+if (!firstName.trim() && !lastName.trim() && !jobTitle.trim()) continue;
 
 const candidate = {};
         headers.forEach((h, idx) => { candidate[h] = values[idx] || ''; });
