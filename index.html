@@ -326,6 +326,7 @@
         <option value="">— выбери рекрутера —</option>
         <option>Nikita Shevchenko</option>
         <option>Saniia Soleikina</option>
+        <option>Recruiter 3</option>
       </select>
     </div>
 
@@ -451,11 +452,18 @@
         candidates.push(candidate);
       }
 
+      const now = new Date();
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
+      const year = now.getFullYear();
+      const lead_assigning_date = month + "/" + day + "/" + year;
+
       const payload = {
         recruiter: recruiter.value,
         source: source.value,
         uploaded_at: new Date().toISOString(),
         file_name: selectedFile.name,
+        lead_assigning_date: lead_assigning_date,
         candidates: candidates
       };
 
