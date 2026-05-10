@@ -436,6 +436,8 @@
 
       for (let i = 1; i < lines.length; i++) {
         if (!lines[i].trim()) continue;
+const allEmpty = values.every(v => !v.trim());
+if (allEmpty) continue;
         // Handle quoted fields
         const values = [];
         let current = '';
